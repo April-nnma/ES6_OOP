@@ -464,13 +464,30 @@ function handleReloadUser() {
   userSortName = [...listPerson.persons];
 }
 
-function handleChangeSelectSortName(e) {
-  if (e.target.value === "all") {
-    handleRenderTable(listPerson.sapXepTheoTenNguoc());
-  } else {
+// function handleChangeSelectSortName(e) {
+//   if (e.target.value === "all") {
+//     handleRenderTable(listPerson.sapXepTheoTenNguoc());
+//   } else {
+//     handleRenderTable(listPerson.sapXepTheoTen());
+//   }
+// }
+
+// Hàm xử lý sự kiện khi người dùng thay đổi giá trị dropdown
+function handleChangeSelectXapXepName(e) {
+  const selectedValue = e.target.value;
+
+  if (e.target.value === "option") {
+    window.location.reload();
+  } else if (selectedValue === "name") {
     handleRenderTable(listPerson.sapXepTheoTen());
+  } else if (selectedValue === "reverse") {
+    handleRenderTable(listPerson.sapXepTheoTenNguoc());
   }
 }
+
+// Đăng ký sự kiện cho dropdown
+const selectXapXepName = document.getElementById("select-xap-xep-name");
+selectXapXepName.addEventListener("change", handleChangeSelectXapXepName);
 
 SortApp.addEventListener("change", handleChangeSelectSort);
 SortAppName.addEventListener("change", handleChangeSelectSortName);
